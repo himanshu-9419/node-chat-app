@@ -7,13 +7,5 @@
         <p>Hi welcome here</p>
     </body>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket=io();
-        socket.on('connect',() => {
-            console.log('connected to server');
-        });
-        socket.on('disconnect',() => {
-            console.log('disconnected from terminal');
-        });
-    </script>
+    <script src="/js/index.js"></script>
 </html>

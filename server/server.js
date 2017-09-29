@@ -13,6 +13,22 @@ io.on('connection',(socket)=>{
     console.log("new user connected");
     socket.on('disconnect',() => {
         console.log('client disconnected');
+    });
+    socket.emit('newEmail',{
+        "from":"Mike",
+        "text":"whats going on",
+        "createAt":"123"
+    });
+    socket.emit('newMessage',{
+        "from":"Mike",
+        "text":"whats going on",
+        "createAt":"123"
+    });
+    socket.on('createMessage',(data)=>{
+        console.log("msg getting from user", data);
+    })
+    socket.on('createEmail',(data)=>{
+        console.log("mail getting from user");
     })
 });
 
