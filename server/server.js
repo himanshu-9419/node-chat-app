@@ -16,7 +16,7 @@ io.on('connection',(socket)=>{
     socket.broadcast.emit('newMessage',generateMessage("Admin","new user joined"));
     socket.on('disconnect',() => {console.log('client disconnected');});
     socket.emit('newMessage',generateMessage("Mike","whats going on"));
-    socket.on('createMessage',(message)=>{
+    socket.on('createMessage',(message,callback)=>{
         console.log("msg getting from user", message);
         // io.emit('newMessage',{
         //     from:message.from,
@@ -24,6 +24,8 @@ io.on('connection',(socket)=>{
         //     createdAt: new Date().getTime()
         // })
         socket.broadcast.emit('newMessage',generateMessage(message.from,message.text));
+        socket.emit('newMessage',generateMessage(message.from,message.text));
+        callback('this is from server');
     })
     // socket.on('createEmail',(data)=>{
     //     console.log("mail getting from user");

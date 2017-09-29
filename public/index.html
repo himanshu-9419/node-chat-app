@@ -4,8 +4,14 @@
         <title>Chat App</title>
     </head>
     <body>
-        <p>Hi welcome here</p>
+        <p>Welcome to chat App</p>
+        <ol id="messages"></ol>
+        <form id="message-form">
+            <input name="message" type="text" placeholder="please enter message"/>
+            <button>send</button>
+        </form>
     </body>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/index.js"></script>
+    <script src="./js/libs/jquery-3.2.1.min.js"></script>
+    <script src="./js/index.js"></script>
 </html>
