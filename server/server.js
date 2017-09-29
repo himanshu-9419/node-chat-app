@@ -14,22 +14,27 @@ io.on('connection',(socket)=>{
     socket.on('disconnect',() => {
         console.log('client disconnected');
     });
-    socket.emit('newEmail',{
-        "from":"Mike",
-        "text":"whats going on",
-        "createAt":"123"
-    });
+    // socket.emit('newEmail',{
+    //     "from":"Mike",
+    //     "text":"whats going on",
+    //     "createAt":"123"
+    // });
     socket.emit('newMessage',{
         "from":"Mike",
         "text":"whats going on",
         "createAt":"123"
     });
-    socket.on('createMessage',(data)=>{
-        console.log("msg getting from user", data);
+    socket.on('createMessage',(message)=>{
+        console.log("msg getting from user", message);
+        io.emit('newMessage',{
+            from:message.from,
+            text:message.text,
+            createdAt: new Date().getTime()
+        })
     })
-    socket.on('createEmail',(data)=>{
-        console.log("mail getting from user");
-    })
+    // socket.on('createEmail',(data)=>{
+    //     console.log("mail getting from user");
+    // })
 });
 
 server.listen(port,()=>{
