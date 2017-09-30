@@ -25,7 +25,7 @@ io.on('connection',(socket)=>{
         // })
         socket.broadcast.emit('newMessage',generateMessage(message.from,message.text));
         socket.emit('newMessage',generateMessage(message.from,message.text));
-        callback('this is from server');
+        callback();
     })
     socket.on('createLocationMessage',(cords)=>{
         io.emit('newLocationMessage',generateLocationMessage('admin',cords.latitude, cords.longitude));
