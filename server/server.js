@@ -4,7 +4,7 @@ const publicPath=path.join(__dirname,'/..','/public');
 const express=require('express');
 const socketIO=require('socket.io');
 const port=process.env.PORT || 3000;
-const {generateMessage}=require('./utils/message.js');
+const {generateMessage,generateLocationMessage}=require('./utils/message.js');
 
 var app=express();
 var server=http.createServer(app);
@@ -26,6 +26,9 @@ io.on('connection',(socket)=>{
         socket.broadcast.emit('newMessage',generateMessage(message.from,message.text));
         socket.emit('newMessage',generateMessage(message.from,message.text));
         callback('this is from server');
+    })
+    socket.on('createLocationMessage',(cords)=>{
+        io.emit('newLocationMessage',generateLocationMessage('admin',cords.latitude, cords.longitude));
     })
     // socket.on('createEmail',(data)=>{
     //     console.log("mail getting from user");
